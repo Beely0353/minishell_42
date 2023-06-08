@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/05 18:09:12 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/08 12:09:30 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,21 @@ typedef struct s_tokens
 {
 	char				*str;
 	int					spcecho;
-}	t_tokens;
+}				t_tokens;
+
+typedef struct s_env
+{
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+}				t_env;
+
+typedef struct s_minishell
+{
+	t_env		*envlst;
+	t_tokens	*tokens;
+	char		**builtins;
+}				t_minishell;
 
 //-------------------LEXER-------------------//
 	//is
@@ -76,6 +90,22 @@ void			compact_array(char **token, int j, int i);
 void			concat_arrow(char **token);
 char			**tokentostr(t_tokens *token);
 
+//-------------------PARSE-------------------//
+void			init_minishell(t_minishell *g_minishell, t_env *envlst);
+void			get_envlst(char **envp, t_env *envlst);
+int				find_cmd(t_minishell *g_minishell, char **cmd);
+
+//--------------------CMD--------------------//
+void			ft_cd(t_minishell *g_minishell);
+void			ft_clear(t_minishell *g_minishell);
+void			ft_echo(t_minishell *g_minishell);
+void			ft_env(t_env *envlst, t_minishell *g_minishell);
+void			ft_exit(t_minishell *g_minishell);
+void			ft_export(t_minishell *g_minishell);
+void			ft_history(t_minishell *g_minishell);
+void			ft_pwd(t_minishell *g_minishell);
+void			ft_unset(t_minishell *g_minishell);
+
 //-------------------UTILS-------------------//
 int				ft_onlyspace(char *str);
 int				ft_cinstr(char *str, char c);
@@ -85,6 +115,13 @@ char			**ft_split(char const *s, char c);
 char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
+int				ft_strcmp(const char *s1, const char *s2);
+	//lst
+t_env			*ft_lstlast(t_env	*lst);
+void			ft_lstadd_front(t_env *alst, t_env *n);
+void			ft_lstadd_back(t_env *alst, t_env *n);
+t_env			*ft_lstnew(char *name, char *value);
+void			free_lsts(t_env *a, t_env *b);
 
 //-------------------ERROR-------------------//
 int				error_quote(char *str);

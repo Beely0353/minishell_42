@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:22:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/05 18:06:43 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/08 12:01:50 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_putstr_fd(char *str, int fd)
 {
-	write (fd, str, ft_strlen(str) - 1);
+	if (!str)
+		return ;
+	write (fd, str, ft_strlen(str));
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

@@ -19,7 +19,9 @@ OBJECTS		=	./bin
 
 SRCS 		=	minishell.c\
 				$(addprefix lexer/, lexer.c lexer_utils1.c lexer_utils2.c)\
-				$(addprefix utils/, memory.c string.c string2.c string3.c utils.c)\
+				$(addprefix parsing/, init.c parse_env.c which_cmd.c)\
+				$(addprefix cmd/, cd.c clear.c echo.c env.c exit.c export.c history.c pwd.c unset.c)\
+				$(addprefix utils/, memory.c string.c string2.c string3.c utils.c lst.c)\
 				$(addprefix error/, error1.c)
 
 OBJS		=	$(addprefix ${OBJECTS}/, $(SRCS:.c=.o))
