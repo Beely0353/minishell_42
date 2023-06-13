@@ -21,7 +21,7 @@ SRCS 		=	minishell.c\
 				$(addprefix lexer/, lexer.c lexer_utils1.c lexer_utils2.c)\
 				$(addprefix parsing/, init.c parse_env.c which_cmd.c)\
 				$(addprefix cmd/, cd.c clear.c echo.c env.c exit.c export.c history.c pwd.c unset.c)\
-				$(addprefix utils/, memory.c string.c string2.c string3.c utils.c lst.c)\
+				$(addprefix utils/, memory.c string.c string2.c string3.c string4.c utils.c lst.c env.c)\
 				$(addprefix error/, error1.c)
 
 OBJS		=	$(addprefix ${OBJECTS}/, $(SRCS:.c=.o))
@@ -87,5 +87,12 @@ fclean: clean
 	@clear
 
 re: fclean all
+
+fcleanr: clean
+	@echo "🗑  $(RED)Supression des executables et librairies.$(EOC) 🗑"
+	@rm -f ${NAME}
+	@clear
+
+rer: fcleanr all
 
 .PHONY:	all clean fclean re

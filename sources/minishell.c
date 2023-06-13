@@ -6,18 +6,18 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:40:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:10:43 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/13 15:45:35 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*void print_token(t_tokens *token)
+void print_token(t_tokens *token)
 {
 	int i = -1;
 	while(token[++i].str)
 		printf("mot[%d] = %s\n", i, token[i].str);
-}*/
+}
 void	shell(t_minishell *g_minishell)
 {
 	char			*str;
@@ -40,7 +40,7 @@ void	shell(t_minishell *g_minishell)
 			continue ;
 		tokens = ft_lexer(str);
 		//print_token(tokens);
-		find_cmd(g_minishell, &tokens->str);
+		find_cmd(g_minishell, tokens);
 	}
 }
 

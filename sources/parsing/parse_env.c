@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:27:06 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:14:04 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:04:18 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	get_envlst(char **envp, t_env *envlst)
 	int	i;
 
 	i = -1;
-	(void) envlst;
 	while (envp[++i])
 		ft_lstadd_back(envlst, \
 		ft_lstnew(get_name(envp[i]), get_value(envp[i])));

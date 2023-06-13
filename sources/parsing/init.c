@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:25:58 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/06 16:34:06 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/08 12:33:58 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_minishell(t_minishell *g_minishell, t_env *envlst)
 {
+	g_minishell->re = 0;
 	g_minishell->builtins = malloc(sizeof(char *) * 10);
 	g_minishell->builtins[0] = "echo";
 	g_minishell->builtins[1] = "cd";

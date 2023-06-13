@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:09:30 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:53:57 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_minishell
 	t_env		*envlst;
 	t_tokens	*tokens;
 	char		**builtins;
+
+	int			re;
 }				t_minishell;
 
 //-------------------LEXER-------------------//
@@ -93,20 +95,24 @@ char			**tokentostr(t_tokens *token);
 //-------------------PARSE-------------------//
 void			init_minishell(t_minishell *g_minishell, t_env *envlst);
 void			get_envlst(char **envp, t_env *envlst);
-int				find_cmd(t_minishell *g_minishell, char **cmd);
-
+int				find_cmd(t_minishell *g_minishell, t_tokens *tokens);
+char			*get_value(char	*envp);
+char			*get_name(char	*envp);
 //--------------------CMD--------------------//
-void			ft_cd(t_minishell *g_minishell);
+void			ft_cd(t_minishell *minishell, t_tokens *tokens);
 void			ft_clear(t_minishell *g_minishell);
 void			ft_echo(t_minishell *g_minishell);
 void			ft_env(t_env *envlst, t_minishell *g_minishell);
 void			ft_exit(t_minishell *g_minishell);
-void			ft_export(t_minishell *g_minishell);
+void			ft_export(t_minishell *minishell, t_tokens *tokens);
 void			ft_history(t_minishell *g_minishell);
 void			ft_pwd(t_minishell *g_minishell);
-void			ft_unset(t_minishell *g_minishell);
+int				is_identifier(char *str);
+void			ft_unset(t_minishell *minishell, t_tokens *tokens);
 
 //-------------------UTILS-------------------//
+int				ft_isalpha(int c);
+int				ft_isalnum(int c);
 int				ft_onlyspace(char *str);
 int				ft_cinstr(char *str, char c);
 size_t			ft_strlen(const char *str);
@@ -116,6 +122,8 @@ char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strcmp(const char *s1, const char *s2);
+char			*ft_strchr(const char *s, int c);
+char			*get_env_value(char *name, t_env *envlst);
 	//lst
 t_env			*ft_lstlast(t_env	*lst);
 void			ft_lstadd_front(t_env *alst, t_env *n);
@@ -128,3 +136,4 @@ int				error_quote(char *str);
 int				err_unclosed_quote(char *str);
 
 #endif
+

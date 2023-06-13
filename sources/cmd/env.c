@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:36:54 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:10:00 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/13 15:24:04 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	ft_env(t_env *envlst, t_minishell *g_minishell)
 {
-	(void) g_minishell;
+	g_minishell->re = 0;
 	while (envlst)
 	{
-		ft_putstr_fd(envlst->name, 1);
-		write(1, "=", 1);
-		ft_putstr_fd(envlst->value, 1);
-		write(1, "\n", 1);
+		printf("%s=%s\n", envlst->name, envlst->value);
 		envlst = envlst->next;
 	}
 }

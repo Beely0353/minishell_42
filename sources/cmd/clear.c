@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:43:28 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:09:52 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/08 12:34:23 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_clear(t_minishell *g_minishell)
 {
-	(void) g_minishell;
+	g_minishell->re = 0;
 	printf("\033[2J\033[1;1H");
 }

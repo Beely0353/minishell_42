@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:22:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:01:50 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/13 15:20:05 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,19 @@ char	*ft_strdup(const char *s1)
 		return (0);
 	ft_memcpy(dst, s1, len);
 	return (dst);
+}
+
+int	ft_isalnum(int c)
+{
+	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z')
+			|| (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }
