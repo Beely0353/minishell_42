@@ -6,7 +6,7 @@
 /*   By: ychirouz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:09:05 by ychirouz          #+#    #+#             */
-/*   Updated: 2023/06/15 18:14:04 by ychirouz         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:53:21 by ychirouz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,27 @@ void	append_to_file(char *content, char *filename)
 	close(fd);
 }
 
-void	manager(char *content, char *filename)
+void	replace_file_content(char *content, char *filename)
+{
+	int	fd;
+	int	wr;
+
+	fd = open(filename, O_WRONLY | O_TRUNC);
+	if (fd == -1)
+	{
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+	wr = write(fd, content, strlen(content));
+	if (wr == -1)
+	{
+		perror("write");
+		exit(EXIT_FAILURE);
+	}
+	close(fd);
+}
+
+void	manager(char *content, char *filename, int roa)
 {
 	int	fd;
 
@@ -77,5 +97,10 @@ void	manager(char *content, char *filename)
 	if (fd == 0)
 		echo_create(content, filename);
 	else
-		append_to_file(content, filename);
+	{
+		if (roa == 1)
+			append_to_file(content, filename);
+		if (roa == 0)
+			replace_file_content(content, filename);
+	}
 }
