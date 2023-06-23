@@ -6,7 +6,7 @@
 /*   By: ychirouz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:09:05 by ychirouz          #+#    #+#             */
-/*   Updated: 2023/06/16 13:53:21 by ychirouz         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:24:16 by ychirouz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+//-----------------ECHO TERM----------------//
+
+int	echo_term(char *str, int n, const char *file)
+{
+	int	i;
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] == '\n' && str[i + 1] == 0x00) && n == 1)
+			return (0);
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (0);
+}
+
+
+//--------------------ECHO PIPE--------------//
 
 int	file_exists(const char *filename)
 {
