@@ -6,7 +6,7 @@
 /*   By: ychirouz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:09:05 by ychirouz          #+#    #+#             */
-/*   Updated: 2023/06/23 13:24:16 by ychirouz         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:09:54 by ychirouz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 
 //-----------------ECHO TERM----------------//
 
-int	echo_term(char *str, int n, const char *file)
+int	echo_term(t_token *token, int n, const char *file)
 {
 	int	i;
 	i = 0;
-	while (str[i])
+	while (token->str[i])
 	{
-		if ((str[i] == '\n' && str[i + 1] == 0x00) && n == 1)
+		if ((token->str[i] == '\n' && token->str[i + 1] == 0x00) && n == 1)
 			return (0);
-		write(1, &str[i], 1);
+		write(1, &token->str[i], 1);
 		i++;
 	}
 	return (0);
@@ -48,7 +48,7 @@ int	file_exists(const char *filename)
 	return (0);
 }
 
-void	echo_create(char *content, char *filename)
+void	echo_create(t_token *content, char *filename)
 {
 	int	fd;
 	int	wr;
@@ -59,7 +59,7 @@ void	echo_create(char *content, char *filename)
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
-	wr = write(fd, content, strlen(content));
+	wr = write(fd, content->str, strlen(content));
 	if (wr == -1)
 	{
 		perror("write");
@@ -68,7 +68,7 @@ void	echo_create(char *content, char *filename)
 	close(fd);
 }
 
-void	append_to_file(char *content, char *filename)
+void	append_to_file(t_token *content, char *filename)
 {
 	int	fd;
 	int	wr;
@@ -79,7 +79,7 @@ void	append_to_file(char *content, char *filename)
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
-	wr = write(fd, content, strlen(content));
+	wr = write(fd, content->str, strlen(content));
 	if (wr == -1)
 	{
 		perror("write");
@@ -88,7 +88,7 @@ void	append_to_file(char *content, char *filename)
 	close(fd);
 }
 
-void	replace_file_content(char *content, char *filename)
+void	replace_file_content(t_token *content, char *filename)
 {
 	int	fd;
 	int	wr;
@@ -99,7 +99,7 @@ void	replace_file_content(char *content, char *filename)
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
-	wr = write(fd, content, strlen(content));
+	wr = write(fd, content->str, strlen(content));
 	if (wr == -1)
 	{
 		perror("write");
@@ -108,18 +108,18 @@ void	replace_file_content(char *content, char *filename)
 	close(fd);
 }
 
-void	manager(char *content, char *filename, int roa)
+void	manager(t_token *content, char *filename, int roa)
 {
 	int	fd;
 
 	fd = file_exists(filename);
 	if (fd == 0)
-		echo_create(content, filename);
+		echo_create(content->str, filename);
 	else
 	{
 		if (roa == 1)
-			append_to_file(content, filename);
+			append_to_file(content->str, filename);
 		if (roa == 0)
-			replace_file_content(content, filename);
+			replace_file_content(content->str, filename);
 	}
 }
