@@ -6,7 +6,7 @@
 /*   By: ychirouz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 14:13:06 by ychirouz          #+#    #+#             */
-/*   Updated: 2023/06/16 15:44:58 by ychirouz         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:17:58 by ychirouz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ void	end_pipe(int *pipefd, char **command1, char **command2, int pid1o2)
 		perror("execvp");
 		exit(EXIT_FAILURE);
 	}
-}
-
-void	pideror(void)
-{
-	perror("pid");
-	exit(EXIT_FAILURE);
 }
 
 void	ft_pipe(char **command1, char **command2)
@@ -62,4 +56,55 @@ void	ft_pipe(char **command1, char **command2)
 	close(pipefd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
+}
+
+int	nbr_builtins(t_minishell *mini)
+{
+	int	i;
+
+	i = 0;
+	while (mini->builtins[i])
+		i++;
+	return (i);
+}
+
+int	**verif_cmd(t_minishell *mini)
+{
+	int	**re;
+
+	re = malloc(sizeof(int *) * nbr_builtins(mini));
+	j = 0;
+	i = 0;
+	r = 0;
+	verif_cmd2(mini, re);
+	return (re);
+}
+
+void	verif_cmd2(t_minishell *mini, int **re)
+{
+	int	i;
+	int	j;
+	int	r;
+	int	g;
+
+	i = 0;
+	j = 0;
+	r = 0;
+	while (mini->builtins[i])
+	{
+		g = ft_isalpha(mini->builtins[i][0]);
+		if (g == 1)
+		{
+			while (mini->bin[j])
+			{
+				if (mini->builtins[i] == mini->bin[j])
+					re[r++] = 1;
+				else
+					re[r++] = 0;
+				j++;
+			}
+		}
+		i++;
+	}
+	re[r] = 0x00;
 }
