@@ -6,34 +6,11 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:42:25 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/15 16:35:04 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/30 10:51:42 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*void	modify_pwd(t_env *envlst, char *new_pwd)
-{
-	t_env *pwd;
-	t_env *old_pwd;
-	int		i;
-	int		j;
-
-	pwd = envlst;
-	old_pwd = envlst;
-	j = ft_strlen(new_pwd) - 1;
-	while (ft_strcmp(pwd->name, "PWD") != 0)
-		pwd = pwd->next;
-	while (ft_strcmp(old_pwd->name, "OLDPWD") != 0)
-		old_pwd = old_pwd->next;
-	free(old_pwd->value);
-	old_pwd->value = ft_strdup(pwd->value);
-	free(pwd->value);
-	pwd->value = malloc(sizeof(char) * j);
-	i = -1;
-	while (++i != j)
-		pwd->value[i] = new_pwd[i];
-}*/
 
 void	modify_pwd(t_env *envlst, char *new_pwd)
 {
@@ -105,7 +82,6 @@ void	cd_relative(t_minishell *minishell, char *path)
 	}
 	new_path = ft_strjoin(PWD, "/");
 	new_path = ft_strjoin(new_path, path);
-	printf("new_path: %s\n", new_path);
 	if (chdir(new_path))
 	{
 		ft_putstr_fd("minishell: cd: ", 2);

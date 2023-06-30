@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/15 15:54:37 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/30 10:45:16 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ typedef struct s_minishell
 }				t_minishell;
 
 //-------------------LEXER-------------------//
+	//quote
+t_tokens	*remove_quotes(t_tokens *tokens);
+t_tokens	*join_quotes(t_tokens *tokens);
+void		free_tokens(t_tokens *tokens);
 	//is
 int				ft_isspace(int c);
 int				ft_issep(int c);

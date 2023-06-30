@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychirouz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:29:23 by ychirouz          #+#    #+#             */
-/*   Updated: 2023/06/26 17:37:11 by ychirouz         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:47:30 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(t_minishell *mini, int re)
+/*void	ft_echo(t_minishell *mini, int re)
 {
 	if (re == 0)
 		mini->re = 0;
@@ -33,4 +33,4 @@ int	echo_term(t_minishell *mini, int n, const char *file)
 	}
 	ft_echo(mini, 0);
 	return (0);
-}
+}*/

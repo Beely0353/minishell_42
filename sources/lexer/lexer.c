@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:44:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/05 16:44:47 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/30 10:23:54 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ t_tokens	*ft_lexer(char *args)
 		else if (!ft_isspace(args[i]))
 			ft_argcpy(args, &i, &tokens[j++]);
 	}
+	tokens[0].spcecho = 1;
 	tokens[j].str = NULL;
+	tokens = join_quotes(tokens);
 	return (tokens);
 }

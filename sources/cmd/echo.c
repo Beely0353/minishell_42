@@ -6,13 +6,18 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:56:05 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/26 17:50:24 by ychirouz         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:49:04 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	file_exists(t_minishell *mini, const char *filename)
+void	ft_echo(t_minishell *g_minishell)
+{
+	g_minishell->re = 0;
+	return ;
+}
+/*int	file_exists(t_minishell *mini, const char *filename)
 {
 	int	fd;
 
@@ -107,4 +112,4 @@ void	manager(t_minishell *mini, char *filename, int roa)
 			replace_file_content(content->str, filename);
 	}
 	ft_echo(mini, 0);
-}
+}*/

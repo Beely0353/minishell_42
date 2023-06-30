@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:44:59 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/05 16:45:09 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/26 17:46:37 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ char	**tokentostr(t_tokens *token)
 
 int	ft_cptquote(char *args, int *i)
 {
-	char	quote;
+	int		j;
+	char	c;
 
-	quote = args[(*i)++];
-	while (args[*i] && args[*i] != quote)
-		(*i)++;
+	j = *i;
+	c = args[*i];
+	j++;
+	while (args[j] && args[j] != c)
+		j++;
+	*i = j;
 	return (1);
 }
 
@@ -48,6 +52,7 @@ int	ft_cptarg(char *args, int *i)
 
 int	ft_cptarrow(char *args, int *i)
 {
+	printf("cptarrow\n");
 	if (args[*i] == args[*i + 1])
 		(*i)++;
 	return (1);
@@ -58,16 +63,19 @@ size_t	ft_cptword(char *args)
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	j = 0;
-	while (args[++i])
+	while (args[i])
 	{
 		if (ft_isquote(args[i]))
 			j += ft_cptquote(args, &i);
 		else if (ft_isfle(args[i]))
 			j += ft_cptarrow(args, &i);
-		else if (!ft_isspace(args[i]))
+		else if (!ft_isspace(args[i]) && args[i] != '\0')
 			j += ft_cptarg(args, &i);
+		if (args[i] == '\0')
+			break ;
+		i++;
 	}
 	return (j + 1);
 }
