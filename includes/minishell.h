@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/30 10:45:16 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:10:03 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char			**tokentostr(t_tokens *token);
 //-------------------PARSE-------------------//
 void			init_minishell(t_minishell *g_minishell, t_env *envlst);
 void			get_envlst(char **envp, t_env *envlst);
-int				find_cmd(t_minishell *g_minishell, t_tokens *tokens);
+int				find_cmd(t_minishell *g_minishell, int cmd);
 char			*get_value(char	*envp);
 char			*get_name(char	*envp);
 //--------------------CMD--------------------//
@@ -128,6 +128,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strchr(const char *s, int c);
 char			*get_env_value(char *name, t_env *envlst);
+int				ft_atoi(const char *str);
 	//lst
 t_env			*ft_lstlast(t_env	*lst);
 void			ft_lstadd_front(t_env *alst, t_env *n);

@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:12:32 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/13 16:54:25 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:12:11 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,23 @@ int	which_cmd(t_minishell *minishell, char *cmd)
 	return (i);
 }
 
-int	find_cmd(t_minishell *minishell, t_tokens *tokens)
+int	find_cmd(t_minishell *minishell, int cmd)
 {
 	int	which;
 
-	which = which_cmd(minishell, tokens[0].str);
+	which = which_cmd(minishell, minishell->tokens[cmd].str);
 	if (which == -1)
 		return (1);
 	else if (which == 0)
 		ft_echo(minishell);
 	else if (which == 1)
-		ft_cd(minishell, tokens);
+		ft_cd(minishell, minishell->tokens);
 	else if (which == 2)
 		ft_pwd(minishell);
 	else if (which == 3)
-		ft_export(minishell, tokens);
+		ft_export(minishell, minishell->tokens);
 	else if (which == 4)
-		ft_unset(minishell, tokens);
+		ft_unset(minishell, minishell->tokens);
 	else if (which == 5)
 		ft_env(minishell->envlst, minishell);
 	else if (which == 6)

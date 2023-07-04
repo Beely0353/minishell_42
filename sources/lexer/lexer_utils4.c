@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:09:10 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/30 10:42:28 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:20:50 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ int	count_whitout_q(char *str)
 	}
 	return (i - j);
 }
-char	*r_quote(char *str)
+char	*r_quote(char *str, int j)
 {
 	int	i;
 	char	*new;
-	int	j;
 	char	c;
 	int	b;
 
@@ -76,17 +75,18 @@ t_tokens	*remove_quotes(t_tokens *tokens)
 	
 	i = -1;
 	j = 0;
-	while (tokens[j].str)
+	while (tokens[j].str != NULL)
 			j++;
 	new = malloc(sizeof(t_tokens) * (j + 1));
 	j = 0;
 	while (tokens[++i].str)
 	{
 		if (ft_strchr(tokens[i].str, '\'') || ft_strchr(tokens[i].str, '"'))
-			new[j++].str = r_quote(tokens[i].str);
+			new[j++].str = r_quote(tokens[i].str, i);
 		else
 			new[j++].str = ft_strdup(tokens[i].str);
 	}
+	new[j].str = NULL;
 	free_tokens(tokens);
 	return (new);
 }

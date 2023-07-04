@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:40:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/15 15:57:53 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:14:14 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void print_token(t_tokens *token)
 	int i = -1;
 	while(token[++i].str)
 		printf("mot[%d] = %s\n", i, token[i].str);
+	printf("mot[%d] = %s\n", i, token[i].str);
 }
 
 void	free_tokens(t_tokens *tokens)
@@ -47,10 +48,10 @@ void	shell(t_minishell *g_minishell)
 		add_history(str);
 		if (err_unclosed_quote(str))
 			continue ;
-		tokens = ft_lexer(str);
-		//print_token(tokens);
-		find_cmd(g_minishell, tokens);
-		free_tokens(tokens);
+		g_minishell->tokens = ft_lexer(str);//a revoir
+		//print_token(g_minishell->tokens);
+		find_cmd(g_minishell, 0);
+		free_tokens(g_minishell->tokens);
 	}
 }
 
