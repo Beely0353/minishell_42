@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   parse_tokens_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 16:34:47 by biaroun           #+#    #+#             */
-/*   Updated: 2023/08/26 17:11:47 by biaroun          ###   ########.fr       */
+/*   Created: 2023/08/25 04:17:34 by biaroun           #+#    #+#             */
+/*   Updated: 2023/08/25 04:17:55 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_env_value(char *name, t_env *envlst)
+int	is_redirect(char *token)
 {
-	while (envlst)
-	{
-		if (ft_strcmp(name, envlst->name) == 0)
-			return (envlst->value);
-		envlst = envlst->next;
-	}
-	return (NULL);
+	return (ft_strcmp(token, "<") == 0 || ft_strcmp(token, ">") == 0
+		|| ft_strcmp(token, ">>") == 0 || ft_strcmp(token, "<<") == 0
+		|| ft_strcmp(token, "|") == 0);
 }

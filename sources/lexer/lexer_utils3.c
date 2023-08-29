@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:11:26 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/30 10:50:25 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:32:24 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ t_tokens	*join_quotes(t_tokens *tokens)
 	new = malloc(sizeof(t_tokens) * count_token(tokens) + 1);
 	while (tokens[i].str != NULL)
 	{
-		if (tokens[i].spcecho == 1 && tokens[i + 1].str && tokens[i + 1].spcecho == 0)
+		if (tokens[i].spcecho == 3)
+			new[j++].str = tokens[i].str;
+		else if (tokens[i].spcecho == 1 && tokens[i + 1].str && tokens[i + 1].spcecho == 0)
 		{
 			new[j++].str = join_tokens(tokens, &i);
 			continue ;

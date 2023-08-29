@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/07/04 17:10:03 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/08/29 05:20:09 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ typedef struct s_tokens
 {
 	char				*str;
 	int					spcecho;
+
+	int					type; // 1 = REDIR, 2 = bultins, 3 = cmd, 4 = arg, 5 = fail
+	int					REDIR_type; //1 = >>, 2 = <<, 3 = <, 4 = >, 5 = |
+	int					dquote;
+
 }				t_tokens;
 
 typedef struct s_env
@@ -62,6 +67,7 @@ typedef struct s_minishell
 t_tokens	*remove_quotes(t_tokens *tokens);
 t_tokens	*join_quotes(t_tokens *tokens);
 void		free_tokens(t_tokens *tokens);
+int			dquote_or_squote(char quote);
 	//is
 int				ft_isspace(int c);
 int				ft_issep(int c);
@@ -98,7 +104,9 @@ char			**tokentostr(t_tokens *token);
 
 //-------------------PARSE-------------------//
 void			init_minishell(t_minishell *g_minishell, t_env *envlst);
+void			parse_tokens(t_tokens *tokens, t_minishell *mini);
 void			get_envlst(char **envp, t_env *envlst);
+void    		parse_redir_token(t_tokens *tokens, int i);
 int				find_cmd(t_minishell *g_minishell, int cmd);
 char			*get_value(char	*envp);
 char			*get_name(char	*envp);
@@ -113,6 +121,7 @@ void			ft_history(t_minishell *g_minishell);
 void			ft_pwd(t_minishell *g_minishell);
 int				is_identifier(char *str);
 void			ft_unset(t_minishell *minishell, t_tokens *tokens);
+int				ft_validator(t_tokens *tokens);
 
 //-------------------UTILS-------------------//
 int				ft_isalpha(int c);

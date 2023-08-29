@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:09:10 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/30 11:20:50 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/08/25 04:36:34 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,11 @@ t_tokens	*remove_quotes(t_tokens *tokens)
 	new[j].str = NULL;
 	free_tokens(tokens);
 	return (new);
+}
+
+int	dquote_or_squote(char quote)
+{
+	if (quote == '\"')
+		return (1);
+	return (0);
 }

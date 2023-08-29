@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:44:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/07/04 17:04:46 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:32:55 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ void	ft_sepcpy(char *arg, t_tokens *tokens, int *i)
 	j = 2;
 	if (arg[*i] == arg[*i + 1])
 		j++;
-	d = malloc(sizeof(char) * 2);
+	d = malloc(sizeof(char) * j);
 	d[0] = arg[*i];
 	d[1] = arg[*i + 1];
 	if (arg[*i] == arg[*i + 1])
 	{
+		printf("test1\n");
 		d[2] = '\0';
 		(*i)++;
 	}
 	else
 		d[1] = '\0';
+	tokens->spcecho = 3;
 	tokens->str = d;
 }
 
@@ -75,6 +77,7 @@ void	ft_quotecpy(char *args, int *i, t_tokens *tokens)
 	if (ft_isspcable(args[*i - 1]))
 		tokens->spcecho = 0;
 	quote = args[(*i)++];
+	tokens->dquote = dquote_or_squote(quote);
 	if (args[(*i)] == quote)
 		tokens->str = ft_voidquote(quote);
 	if (args[(*i)] == quote)

@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:44:59 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/26 17:46:37 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:38:02 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_cptarg(char *args, int *i)
 
 int	ft_cptarrow(char *args, int *i)
 {
-	printf("cptarrow\n");
 	if (args[*i] == args[*i + 1])
 		(*i)++;
 	return (1);
