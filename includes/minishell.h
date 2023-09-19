@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/08/29 05:20:09 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/19 02:22:26 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_tokens
 
 	int					type; // 1 = REDIR, 2 = bultins, 3 = cmd, 4 = arg, 5 = fail
 	int					REDIR_type; //1 = >>, 2 = <<, 3 = <, 4 = >, 5 = |
+	char				*opt;
 	int					dquote;
 
 }				t_tokens;
@@ -110,6 +111,8 @@ void    		parse_redir_token(t_tokens *tokens, int i);
 int				find_cmd(t_minishell *g_minishell, int cmd);
 char			*get_value(char	*envp);
 char			*get_name(char	*envp);
+
+void    		ft_expander(t_tokens *tokens, t_env *env);
 //--------------------CMD--------------------//
 void			ft_cd(t_minishell *minishell, t_tokens *tokens);
 void			ft_clear(t_minishell *g_minishell);
@@ -136,6 +139,9 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strchr(const char *s, int c);
+char			*ft_strcpy(char *dest, const char *src);
+char			*ft_strncpy(char *dest, const char *src, size_t n);
+char 			*ft_strstr(const char *haystack, const char *needle);
 char			*get_env_value(char *name, t_env *envlst);
 int				ft_atoi(const char *str);
 	//lst

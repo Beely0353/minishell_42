@@ -23,7 +23,8 @@ SRCS 		=	minishell.c\
 				$(addprefix cmd/, cd.c clear.c echo.c echo2.c env.c exit.c export.c history.c pwd.c unset.c)\
 				$(addprefix utils/, memory.c string.c string2.c string3.c string4.c utils.c lst.c env.c)\
 				$(addprefix error/, error1.c)\
-				$(addprefix validator/, validator.c)
+				$(addprefix validator/, validator.c)\
+				$(addprefix expander/, expander.c)
 
 
 OBJS		=	$(addprefix ${OBJECTS}/, $(SRCS:.c=.o))

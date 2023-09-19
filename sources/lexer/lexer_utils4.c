@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:09:10 by biaroun           #+#    #+#             */
-/*   Updated: 2023/08/25 04:36:34 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/19 02:29:38 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*r_quote(char *str, int j)
 		new[j++] = str[i];
 	}
 	new[j] = '\0';
+	printf("str = %s\n", new);
 	return (new);
 }
 

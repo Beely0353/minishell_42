@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:11:42 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/30 11:04:52 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/08/31 09:10:14 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,53 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (sign * result);
+}
+
+char	*ft_strcpy(char *dest, const char *src)
+{
+
+    char *original_dest = dest;
+
+    while ((*src))
+		*dest++ = *src++;
+    return (original_dest);
+}
+
+char	*ft_strncpy(char *dest, const char *src, size_t n)
+{
+    char *original_dest = dest;
+
+    while (n > 0 && (*dest++ = *src++)) 
+	{
+        n--;
+    }
+    while (n > 0) 
+	{
+        *dest++ = '\0';
+        n--;
+    }
+    return (original_dest);
+}
+
+char *ft_strstr(const char *haystack, const char *needle)
+{
+	const char *h;
+	const char *n;
+
+    while (*haystack != '\0') 
+	{
+		h = haystack;
+		n = needle;
+        while (*n != '\0' && *h == *n) 
+		{
+            h++;
+            n++;
+        }
+        if (*n == '\0')
+		{
+            return (char *)haystack;
+        }
+        haystack++;
+    }
+    return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:44:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/08/26 17:32:55 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/19 02:32:45 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_tokens	*ft_lexer(char *args)
 	tokens = malloc(sizeof(t_tokens) * ft_cptword(args));
 	while (args[++i])
 	{
+		tokens[i].dquote = 0;
 		if (ft_isquote(args[i]))
 			ft_quotecpy(args, &i, &tokens[j++]);
 		else if (ft_isfle(args[i]))
