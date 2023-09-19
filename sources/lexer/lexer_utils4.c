@@ -6,63 +6,23 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 10:09:10 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/19 02:29:38 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/19 02:59:18 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	count_whitout_q(char *str)
+char	*r_quote(char *str)
 {
 	int	i;
-	int	j;
-	int	b;
-	char	c;
-
-	i = -1;
-	j = 0;
-	b = 0;
-	while (str[++i])
-	{
-		if (ft_isquote(str[i]) && !b)
-		{
-			c = str[i];
-			b = 1;
-			j++;
-		}
-		if (str[i] == c && b)
-		{	
-			b = 0;
-			j++;
-		}
-	}
-	return (i - j);
-}
-char	*r_quote(char *str, int j)
-{
-	int	i;
+	int j;
 	char	*new;
-	char	c;
-	int	b;
-
-	i = -1;
+	
+	i = 1;
 	j = 0;
-	new = malloc(sizeof(char) * (i - j + 1));
-	while (str[++i])
-	{
-		if (ft_isquote(str[i]) && !b)
-		{
-			c = str[i];
-			b = 1;
-			continue ;
-		}
-		if (str[i] == c && b)
-		{	
-			b = 0;
-			continue ;
-		}
-		new[j++] = str[i];
-	}
+	new = malloc(sizeof(char) * (ft_strlen(str) - 1));
+	while (str[i + 1])
+		new[j++] = str[i++];
 	new[j] = '\0';
 	printf("str = %s\n", new);
 	return (new);
@@ -82,8 +42,8 @@ t_tokens	*remove_quotes(t_tokens *tokens)
 	j = 0;
 	while (tokens[++i].str)
 	{
-		if (ft_strchr(tokens[i].str, '\'') || ft_strchr(tokens[i].str, '"'))
-			new[j++].str = r_quote(tokens[i].str, i);
+		if (tokens[i].str[0] == '\'' || tokens[i].str[0] == '"')
+			new[j++].str = r_quote(tokens[i].str);
 		else
 			new[j++].str = ft_strdup(tokens[i].str);
 	}

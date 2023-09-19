@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:40:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/19 02:26:36 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/19 02:58:57 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,11 @@ void	shell(t_minishell *g_minishell)
 		g_minishell->tokens = ft_lexer(str);//a revoir retirez quote
 		//print_env(g_minishell->envlst);
 		print_token(g_minishell->tokens);
+		ft_expander(g_minishell->tokens, g_minishell->envlst);
+		printf("\n\n");
+		print_token(g_minishell->tokens);
 		parse_tokens(g_minishell->tokens, g_minishell);
 		//print_parse(g_minishell->tokens);
-		//ft_expander(g_minishell->tokens, g_minishell->envlst);
-		//print_token(g_minishell->tokens);
 		//find_cmd(g_minishell, 0);
 		//ft_validator(g_minishell->tokens);
 		free_tokens(g_minishell->tokens);

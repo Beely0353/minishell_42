@@ -6,27 +6,24 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 08:25:52 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/19 02:08:56 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/19 03:28:19 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-char	*add_dollar(char *name)
+void	remplace_expand_short(char *str, char *name, int *k, int *i, int *j)
 {
-	int	i;
-	int j;
-	char *str;
-
-	str = malloc(sizeof(char) * (ft_strlen(name) + 2));
-	i = 0;
-	j = 1;
-	str[0] = '$';
-	while(name[i])
-		str[j++] = name[i++];
-	str[j] = '\0';
-	return (str);
+	*i = 0;
+	*j = 0;
+	while (str[*i] != '$')
+		(*i)++;
+	*k = ++(*i);
+	while (name[*j] && str[*i] != '$')
+	{
+		(*i)++;
+		(*j)++;
+	}
 }
 char *remplace_expand(char *str, char *name, char *value)
 {
@@ -36,16 +33,7 @@ char *remplace_expand(char *str, char *name, char *value)
 	int		n;
 	char 	*new;
 
-	i = 0;
-	j = 0;
-	while (str[i] != '$')
-		i++;
-	k = ++i;
-	while (name[j] || str[i] != '$')
-	{
-		i++;
-		j++;
-	}
+	remplace_expand_short(str, name, &k, &i, &j);
 	n = i;
 	new = malloc(sizeof(char) * (k + ft_strlen(value) + ft_strlen(str + i)) + 10);
 	j = 0;
@@ -70,7 +58,7 @@ int	find_expand(char *str, char *name)
 	while (str[i] != '$')
 		i++;
 	i++;
-	while (name[j] || str[i] != '$')
+	while (name[j] && str[i] != '$')
 	{
 		if (name[j] != str[i])
 		{
@@ -97,12 +85,12 @@ void    ft_expander(t_tokens *tokens, t_env *env)
     int i;
 
     i = -1;
-    if (tokens[++i].str)
+    while (tokens[++i].str)
     {
         if (tokens[i].dquote)
         {
-            if (ft_strchr(tokens[i].str, '$') == NULL)
+            while (ft_strchr(tokens[i].str, '$'))
                 tokens[i].str = expander(tokens[i], env);
-        }
+		}
     }
 }
