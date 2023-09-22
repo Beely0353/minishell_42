@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 04:05:18 by biaroun           #+#    #+#             */
-/*   Updated: 2023/08/31 08:16:41 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/22 09:59:33 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	parse_tokens(t_tokens *tokens, t_minishell *mini)
 	while (tokens[i].str != NULL)
 	{   
 		tokens[i].type = 5;
+		/*if (tokens[i - 1].type = 2 || tokens[i - 1].type = 3)
+			tokens[i].type = 4;*/
 		if (is_redir(tokens[i].str))
         {
             tokens[i].type = 1;

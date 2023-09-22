@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/19 02:22:26 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/22 10:19:23 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void    		ft_expander(t_tokens *tokens, t_env *env);
 //--------------------CMD--------------------//
 void			ft_cd(t_minishell *minishell, t_tokens *tokens);
 void			ft_clear(t_minishell *g_minishell);
-void			ft_echo(t_minishell *g_minishell);
+void			ft_echo(t_minishell *g_minishell, t_tokens *tokens);
 void			ft_env(t_env *envlst, t_minishell *g_minishell);
 void			ft_exit(t_minishell *g_minishell);
 void			ft_export(t_minishell *minishell, t_tokens *tokens);

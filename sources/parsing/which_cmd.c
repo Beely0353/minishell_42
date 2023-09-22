@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:12:32 by biaroun           #+#    #+#             */
-/*   Updated: 2023/08/25 04:47:53 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/22 10:24:42 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	find_cmd(t_minishell *minishell, int cmd)
 	if (which == -1)
 		return (1);
 	else if (which == 0)
-		ft_echo(minishell);
+		ft_echo(minishell, minishell->tokens);
 	else if (which == 1)
 		ft_cd(minishell, minishell->tokens);
 	else if (which == 2)

@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 08:25:52 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/19 03:28:19 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/22 10:00:02 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char    *expander(t_tokens tokens, t_env *env)
     while (env)
 	{
 		if (find_expand(tokens.str, env->name))
-			return (remplace_expand(tokens.str, env->name,env->value));//segfault !!
+			return (remplace_expand(tokens.str, env->name,env->value));
 		env = env->next;
 	}
 	return (tokens.str);
