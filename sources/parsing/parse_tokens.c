@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 04:05:18 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/22 09:59:33 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/26 03:56:53 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,22 @@ int	is_redir(char *token)
 		|| ft_strcmp(token, "|") == 0);
 }
 
-int	cmd_exists(t_tokens *token, t_minishell *mini)
+int	cmd_exists(t_tokens *token, t_minishell *mini, char	**path)
 {
-	char	**path;
 	char	*full_path;
 
 	if (token->str[0] == '/' || token->str[0] == '.')
 		return (1);
 	if (get_env_value("PATH", mini->envlst) == NULL)
 		return (0);
-	path = ft_split(get_env_value("PATH", mini->envlst), ':');
 	while (path && *path)
 	{
-		full_path = ft_strjoin(*path, "/");
-		full_path = ft_strjoin(full_path, token->str);
+		full_path = ft_strjoin_path(*path, token->str);
 		if (access(full_path, X_OK) == 0)
 		{
 			if (ft_strlen(token->str) > 0)
 			{
-				token->str = ft_strdup(full_path);
+				token->path_cmd = ft_strdup(full_path);
 				free(full_path);
 				return (1);
 			}
@@ -45,7 +42,7 @@ int	cmd_exists(t_tokens *token, t_minishell *mini)
 		free(full_path);
 		path++;
 	}
-	return (0);
+return (0);
 }//refaire
 
 void    parse_redir_token(t_tokens *tokens, int i)
@@ -96,7 +93,7 @@ void	parse_tokens(t_tokens *tokens, t_minishell *mini)
         }
         else if (is_builtins(mini, tokens[i].str))
             tokens[i].type = 2;
-        else if (cmd_exists(tokens + i, mini))
+        else if (cmd_exists(tokens + i, mini, mini->PATH))
             tokens[i].type = 3;
         else
             tokens[i].type = 4;

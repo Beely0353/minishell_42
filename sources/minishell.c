@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:40:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/22 10:22:16 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/26 03:56:52 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ void	free_tokens(t_tokens *tokens)
 {
 	int i = -1;
 	while (tokens[++i].str)
+	{
 		free(tokens[i].str);
+		/*if (tokens[i].type == 3)
+			free(tokens[i].path_cmd);*/
+	}
 	free(tokens);
 }
 
@@ -74,6 +78,7 @@ void	shell(t_minishell *g_minishell)
 {
 	char			*str;
 	t_tokens		*tokens;
+	//int i = 1;
 
 	tokens = NULL;
 	//init_signal();
@@ -93,14 +98,16 @@ void	shell(t_minishell *g_minishell)
 		g_minishell->tokens = ft_lexer(str);//a revoir retirez quote
 		//print_env(g_minishell->envlst);
 		//print_token(g_minishell->tokens);
-		ft_expander(g_minishell->tokens, g_minishell->envlst);
+		ft_expander(g_minishell->tokens, g_minishell->envlst);// var $?
 		//printf("\n\n");
 		//print_token(g_minishell->tokens);
 		parse_tokens(g_minishell->tokens, g_minishell);//gerer opt
 		//print_parse(g_minishell->tokens);
-		find_cmd(g_minishell, 0);
+		//find_cmd(g_minishell, 0);
 		//ft_validator(g_minishell->tokens);
+		ft_executor(g_minishell, g_minishell->tokens);
 		free_tokens(g_minishell->tokens);
+		//system("leaks minishell");
 	}
 }
 
@@ -114,5 +121,7 @@ int	main(int ac, char **av, char **envp)
 	get_envlst(envp, &envlst);
 	init_minishell(&g_minishell, envlst.next);
 	shell(&g_minishell);
+	//free_tab(g_minishell.PATH);
+	//system("leaks minishell");
 	return (0);
 }

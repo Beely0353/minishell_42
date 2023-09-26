@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nihamdan <nihamdan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:25:58 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/08 12:33:58 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/26 12:56:51 by nihamdan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	init_minishell(t_minishell *g_minishell, t_env *envlst)
 	g_minishell->builtins[8] = "history";
 	g_minishell->builtins[9] = NULL;
 	g_minishell->envlst = envlst;
+	g_minishell->PATH = ft_split(get_env_value("PATH", envlst), ':');
 }

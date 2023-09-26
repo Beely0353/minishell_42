@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nihamdan <nihamdan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:20:47 by biaroun           #+#    #+#             */
-/*   Updated: 2023/06/05 18:08:54 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/26 12:56:52 by nihamdan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
