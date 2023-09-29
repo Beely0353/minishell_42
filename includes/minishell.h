@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:41:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/26 03:56:53 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/29 04:55:34 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int				find_cmd(t_minishell *g_minishell, int cmd);
 char			*get_value(char	*envp);
 char			*get_name(char	*envp);
 
+char   			*no_expand(char *str);
 void    		ft_expander(t_tokens *tokens, t_env *env);
 
 //--------------------TOOLS--------------------//

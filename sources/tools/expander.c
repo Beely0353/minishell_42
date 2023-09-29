@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 08:25:52 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/26 03:56:53 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/29 05:03:07 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	find_expand(char *str, char *name)
 	while (str[i] != '$')
 		i++;
 	i++;
-	while (name[j] && str[i] != '$')
+	while (str[i] && str[i] != '$')
 	{
 		if (name[j] != str[i])
 		{
@@ -77,7 +77,7 @@ char    *expander(t_tokens tokens, t_env *env)
 			return (remplace_expand(tokens.str, env->name,env->value));
 		env = env->next;
 	}
-	return (tokens.str);
+	return (no_expand(tokens.str));
 }
 
 void    ft_expander(t_tokens *tokens, t_env *env)

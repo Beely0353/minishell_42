@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:40:19 by biaroun           #+#    #+#             */
-/*   Updated: 2023/09/26 03:56:52 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/09/29 04:55:58 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	print_parse(t_tokens *token)
 		else
 			printf("BUG\n");
 	}
+	printf("-----------------------------------\n");
 }
 //-------------------------
 void	free_tokens(t_tokens *tokens)
@@ -102,10 +103,10 @@ void	shell(t_minishell *g_minishell)
 		//printf("\n\n");
 		//print_token(g_minishell->tokens);
 		parse_tokens(g_minishell->tokens, g_minishell);//gerer opt
-		//print_parse(g_minishell->tokens);
+		print_parse(g_minishell->tokens);
 		//find_cmd(g_minishell, 0);
 		//ft_validator(g_minishell->tokens);
-		ft_executor(g_minishell, g_minishell->tokens);
+		//ft_executor(g_minishell, g_minishell->tokens);
 		free_tokens(g_minishell->tokens);
 		//system("leaks minishell");
 	}
