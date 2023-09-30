@@ -62,9 +62,9 @@ int	ft_executor(t_minishell *g_minishell,t_tokens *tokens)
 	int		i;
 	int 	j;
 	char 	**arg;
-	int tmp;//
+	//int tmp;
 	
-	tmp = -1;//
+	//tmp = -1;
 	g_minishell->re = 0;
 	i = -1;
 	//arg = NULL;
@@ -80,7 +80,7 @@ int	ft_executor(t_minishell *g_minishell,t_tokens *tokens)
 			exec_cmd(tokens[i].path_cmd, arg);
 			free(tokens[i].path_cmd);
 			i = j;
-			//free(arg);//a corriger
+			free(arg);//a corriger
 			/*while(tokens[++tmp].type)
 				printf("%p\n", tokens[tmp].type);
 			printf("%p\n", tokens->type);*/

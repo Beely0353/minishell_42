@@ -42,8 +42,8 @@ void	ft_argcpy(char *args, int *i, t_tokens *tokens)
 
 	j = *i;
 	tokens->spcecho = 1;
-	if (ft_isspcable(args[*i - 1]))
-		tokens->spcecho = 0;
+	if ( *i != 0 && ft_isspcable(args[(*i) - 1]))
+    	tokens->spcecho = 0;
 	while (args[j] && !ft_issep(args[j]) && !ft_isspace(args[j]))
 		j++;
 	arg = malloc(sizeof(char) * j - *i + 1);

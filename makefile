@@ -30,7 +30,7 @@ SRCS 		=	minishell.c\
 
 OBJS		=	$(addprefix ${OBJECTS}/, $(SRCS:.c=.o))
 
-CFLAGS		=	-Wall -Wextra -Werror -Iincludes -arch x86_64 -g
+CFLAGS		=	-Wall -Wextra -Werror -Iincludes -g
 CC			=	gcc
 CINCLUDES	=	-I ${INCLUDES}
 LINK		=	libreadline.a -lreadline -lncurses
@@ -78,7 +78,7 @@ start:
 ${NAME}: ${OBJS}
 	@clear
 	@echo "$(GRE)✅ Compilation terminée.$(EOC)"
-	@${CC} ${CFLAGS} ${LINK} -o ${NAME} ${OBJS}
+	@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LINK} 
 
 clean:
 	@echo "🗑  $(RED)Supression des fichiers binaires (.o).$(EOC) 🗑"

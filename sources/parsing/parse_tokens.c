@@ -71,9 +71,8 @@ int	is_builtins(t_minishell *minishell, char *cmd)
 		i++;
 	}
     if (i == 9)
-        return (0);
+		return (0);
 	return (1);
-
 }
 
 void	parse_tokens(t_tokens *tokens, t_minishell *mini)

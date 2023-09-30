@@ -12,15 +12,13 @@
 
 #include "minishell.h"
 
-void	modify_pwd(t_env *envlst, char *new_pwd)
+void	modify_pwd(t_env *envlst)
 {
 	t_env *pwd;
 	t_env *old_pwd;
-	int		j;
 
 	pwd = envlst;
 	old_pwd = envlst;
-	j = ft_strlen(new_pwd) - 1;
 	while (ft_strcmp(pwd->name, "PWD") != 0)
 		pwd = pwd->next;
 	while (ft_strcmp(old_pwd->name, "OLDPWD") != 0)
@@ -50,7 +48,7 @@ int	cd_no_dir(t_minishell *minishell)
 		minishell->re = 1;
 		return (1);
 	}
-	modify_pwd(minishell->envlst, HOME);
+	modify_pwd(minishell->envlst);
 	return (0);
 }
 
@@ -64,7 +62,7 @@ void	cd_absolute(t_minishell *minishell, char *path)
 		minishell->re = 1;
 		return ;
 	}
-	modify_pwd(minishell->envlst, path);
+	modify_pwd(minishell->envlst);
 	return ;
 }
 
@@ -89,17 +87,14 @@ void	cd_relative(t_minishell *minishell, char *path)
 		ft_putstr_fd(": No such file or directory\n", 2);
 		minishell->re = 1;
 	}
-	modify_pwd(minishell->envlst, new_path);
+	modify_pwd(minishell->envlst);
 	free(new_path);
 	return ;
 }
 
 void	ft_cd(t_minishell *minishell, t_tokens *tokens)
 {
-	char	*old;
-
 	minishell->re = 0;
-	old = getcwd(NULL, 0);
 	if (tokens[1].str == NULL)
 	{
 		if(cd_no_dir(minishell))

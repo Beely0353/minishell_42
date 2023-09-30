@@ -78,12 +78,11 @@ void	print_env(t_env *env)
 void	shell(t_minishell *g_minishell)
 {
 	char			*str;
-	t_tokens		*tokens;
-	//int i = 1;
+	int i = 1;
 
-	tokens = NULL;
+	//tokens = NULL;
 	//init_signal();
-	while (1)
+	while (i--)
 	{
 		str = readline("minishell$ ");
 		if (!str)
@@ -93,20 +92,20 @@ void	shell(t_minishell *g_minishell)
 		}
 		if (str == NULL || str[0] == '\0')
 			continue ;
-		add_history(str);
+		//add_history(str);
 		if (err_unclosed_quote(str))
 			continue ;
 		g_minishell->tokens = ft_lexer(str);//a revoir retirez quote
 		//print_env(g_minishell->envlst);
 		//print_token(g_minishell->tokens);
-		ft_expander(g_minishell->tokens, g_minishell->envlst);// var $?
+		//ft_expander(g_minishell->tokens, g_minishell->envlst);// var $?
 		//printf("\n\n");
 		//print_token(g_minishell->tokens);
 		parse_tokens(g_minishell->tokens, g_minishell);//gerer opt
-		print_parse(g_minishell->tokens);
+		//print_parse(g_minishell->tokens);
 		//find_cmd(g_minishell, 0);
-		//ft_validator(g_minishell->tokens);
-		//ft_executor(g_minishell, g_minishell->tokens);
+		ft_validator(g_minishell->tokens);
+		ft_executor(g_minishell, g_minishell->tokens);
 		free_tokens(g_minishell->tokens);
 		//system("leaks minishell");
 	}
@@ -119,10 +118,13 @@ int	main(int ac, char **av, char **envp)
 
 	(void) ac;
 	(void) av;
+	envlst.name = NULL;
+	envlst.value = NULL;
+	envlst.next = NULL;
 	get_envlst(envp, &envlst);
 	init_minishell(&g_minishell, envlst.next);
 	shell(&g_minishell);
-	//free_tab(g_minishell.PATH);
+	free_tab(g_minishell.PATH);
 	//system("leaks minishell");
 	return (0);
 }

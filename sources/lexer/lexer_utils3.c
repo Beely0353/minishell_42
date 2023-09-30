@@ -16,11 +16,9 @@ int	count_token(t_tokens *tokens)
 {
 	int	i;
 	int	j;
-	int	b;
 
 	i = 0;
 	j = 0;
-	b = 0;
 	while (tokens[i].str != NULL)
 	{
 		if (tokens[i].str == NULL)
@@ -81,7 +79,7 @@ t_tokens	*join_quotes(t_tokens *tokens)
 
 	i = 0;
 	j = 0;
-	new = malloc(sizeof(t_tokens) * count_token(tokens) + 1);
+	new = malloc(sizeof(t_tokens) * (count_token(tokens) + 1));
 	while (tokens[i].str != NULL)
 	{
 		if (tokens[i].spcecho == 3)
