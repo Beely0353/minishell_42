@@ -48,6 +48,7 @@ t_tokens	*remove_quotes(t_tokens *tokens)
 			new[j++].str = ft_strdup(tokens[i].str);
 	}
 	new[j].str = NULL;
+	new[j].type = 0;
 	free_tokens(tokens);
 	return (new);
 }

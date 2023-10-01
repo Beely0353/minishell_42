@@ -78,11 +78,11 @@ void	print_env(t_env *env)
 void	shell(t_minishell *g_minishell)
 {
 	char			*str;
-	int i = 1;
+	//int i = 1;
 
 	//tokens = NULL;
 	//init_signal();
-	while (i--)
+	while (1)
 	{
 		str = readline("minishell$ ");
 		if (!str)
@@ -92,7 +92,7 @@ void	shell(t_minishell *g_minishell)
 		}
 		if (str == NULL || str[0] == '\0')
 			continue ;
-		//add_history(str);
+		add_history(str);
 		if (err_unclosed_quote(str))
 			continue ;
 		g_minishell->tokens = ft_lexer(str);//a revoir retirez quote
@@ -107,7 +107,6 @@ void	shell(t_minishell *g_minishell)
 		ft_validator(g_minishell->tokens);
 		ft_executor(g_minishell, g_minishell->tokens);
 		free_tokens(g_minishell->tokens);
-		//system("leaks minishell");
 	}
 }
 
@@ -125,6 +124,5 @@ int	main(int ac, char **av, char **envp)
 	init_minishell(&g_minishell, envlst.next);
 	shell(&g_minishell);
 	free_tab(g_minishell.PATH);
-	//system("leaks minishell");
 	return (0);
 }

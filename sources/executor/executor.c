@@ -18,17 +18,17 @@ char	**get_cmd_arg(t_tokens *tokens, int *j)
 	int counter;
 	int tmp;
 	
-	counter = 0;
+	counter = 1;
 	tmp = *j;
-	while(tokens[++(*j)].type == 4)
+	(*j)++;
+	while(tokens[(*j)++].type == 4)
 		counter++;
 	*j = tmp;
 	tmp = 0;
-	arg = malloc(sizeof(char*) * counter + 1);
+	arg = malloc(sizeof(char*) * (counter + 1));
 	if (!arg)
 		return (NULL);
-	counter += 1;
-	while(counter--)
+	while(counter-- && tokens[(*j)].str)
 		arg[tmp++] = tokens[(*j)++].str;
 	arg[tmp] = NULL;
 	return (arg);
@@ -42,7 +42,6 @@ int exec_cmd(char *cmd, char **arg)
 	pid = fork();
 	if(pid == -1)
 	{
-		printf("erreur fork");
 		perror("Erreur fork ");
 		return(EXIT_FAILURE);
 	}
@@ -66,25 +65,18 @@ int	ft_executor(t_minishell *g_minishell,t_tokens *tokens)
 	
 	//tmp = -1;
 	g_minishell->re = 0;
-	i = -1;
-	//arg = NULL;
-	while(tokens[++i].str)
+	i = 0;
+	arg = NULL;
+	while(tokens[i].str)
 	{
 		if(tokens[i].type == 3)
 		{
 			j = i;
 			arg = get_cmd_arg(tokens, &j);
-			/*printf("cmd = %s\n",tokens[i].path_cmd);
-			printf("opt1 = %s\n",arg[0]);
-			printf("opt2 = %s\n",arg[1]);*/
 			exec_cmd(tokens[i].path_cmd, arg);
 			free(tokens[i].path_cmd);
 			i = j;
-			free(arg);//a corriger
-			/*while(tokens[++tmp].type)
-				printf("%p\n", tokens[tmp].type);
-			printf("%p\n", tokens->type);*/
-			
+			free(arg);
 		}
 	}
 	return(EXIT_SUCCESS);
