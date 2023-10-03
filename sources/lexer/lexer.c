@@ -106,6 +106,7 @@ t_tokens	*ft_lexer(char *args)
 	tokens = malloc(sizeof(t_tokens) * ft_cptword(args));
 	while (args[++i])
 	{
+		tokens[j].path_cmd = NULL;
 		tokens[j].dquote = 1;
 		if (ft_isquote(args[i]))
 			ft_quotecpy(args, &i, &tokens[j++]);
@@ -114,6 +115,7 @@ t_tokens	*ft_lexer(char *args)
 		else if (!ft_isspace(args[i]))
 			ft_argcpy(args, &i, &tokens[j++]);
 	}
+	tokens[j].path_cmd = NULL;
 	tokens[0].spcecho = 1;
 	tokens[j].str = NULL;
 	tokens = join_quotes(tokens);

@@ -60,8 +60,7 @@ void	free_tokens(t_tokens *tokens)
 	while (tokens[++i].str)
 	{
 		free(tokens[i].str);
-		/*if (tokens[i].type == 3)
-			free(tokens[i].path_cmd);*/
+		free(tokens[i].path_cmd);
 	}
 	free(tokens);
 }

@@ -42,11 +42,13 @@ t_tokens	*remove_quotes(t_tokens *tokens)
 	j = 0;
 	while (tokens[++i].str)
 	{
+		new[j].path_cmd = NULL;
 		if (tokens[i].str[0] == '\'' || tokens[i].str[0] == '"')
 			new[j++].str = r_quote(tokens[i].str);
 		else
 			new[j++].str = ft_strdup(tokens[i].str);
 	}
+	new[j].path_cmd = NULL;
 	new[j].str = NULL;
 	new[j].type = 0;
 	free_tokens(tokens);
