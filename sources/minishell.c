@@ -100,12 +100,12 @@ void	shell(t_minishell *g_minishell)
 		//ft_expander(g_minishell->tokens, g_minishell->envlst);// var $?
 		//printf("\n\n");
 		//print_token(g_minishell->tokens);
-		parse_tokens(g_minishell->tokens, g_minishell);//gerer opt
+		parse_tokens(g_minishell->tokens, g_minishell);//gerer $?
 		//print_parse(g_minishell->tokens);
 		//find_cmd(g_minishell, 0);
 		ft_validator(g_minishell->tokens);
-		printf("re = %s\n", ft_heredoc(g_minishell, g_minishell->tokens));
-		//ft_executor(g_minishell, g_minishell->tokens);
+		//printf("re = %s\n", ft_heredoc(g_minishell, g_minishell->tokens));
+		ft_executor(g_minishell, g_minishell->tokens);
 		free_tokens(g_minishell->tokens);
 	}
 }

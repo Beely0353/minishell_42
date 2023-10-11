@@ -112,6 +112,7 @@ char			**tokentostr(t_tokens *token);
 void			init_minishell(t_minishell *g_minishell, t_env *envlst);
 void			parse_tokens(t_tokens *tokens, t_minishell *mini);
 void			get_envlst(char **envp, t_env *envlst);
+int				cmd_abs_exists(t_tokens *token);
 void    		parse_redir_token(t_tokens *tokens, int i);
 int				find_cmd(t_minishell *g_minishell, int cmd);
 char			*get_value(char	*envp);

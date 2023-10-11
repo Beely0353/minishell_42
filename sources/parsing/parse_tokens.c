@@ -43,7 +43,7 @@ int	cmd_exists(t_tokens *token, t_minishell *mini, char	**path)
 		path++;
 	}
 return (0);
-}//refaire
+}
 
 void    parse_redir_token(t_tokens *tokens, int i)
 {
@@ -83,16 +83,16 @@ void	parse_tokens(t_tokens *tokens, t_minishell *mini)
 	while (tokens[i].str != NULL)
 	{   
 		tokens[i].type = 5;
-		/*if (tokens[i - 1].type = 2 || tokens[i - 1].type = 3)
-			tokens[i].type = 4;*/
-		if (is_redir(tokens[i].str))
+		if (i != 0 && (tokens[i - 1].type == 2 || tokens[i - 1].type == 3))
+			tokens[i].type = 4;
+		else if (is_redir(tokens[i].str))
         {
             tokens[i].type = 1;
 			parse_redir_token(tokens, i);
         }
         else if (is_builtins(mini, tokens[i].str))
             tokens[i].type = 2;
-        else if (cmd_exists(tokens + i, mini, mini->PATH))
+        else if (cmd_abs_exists(tokens + i) || cmd_exists(tokens + i, mini, mini->PATH))
             tokens[i].type = 3;
         else
             tokens[i].type = 4;
