@@ -121,7 +121,9 @@ char   			*no_expand(char *str);
 void    		ft_expander(t_tokens *tokens, t_env *env);
 
 //--------------------TOOLS--------------------//
+char			*expander(t_tokens tokens, t_env *env);
 int				ft_executor(t_minishell *g_minishell,t_tokens *tokens);
+char			*ft_heredoc(t_minishell *mini, t_tokens *tokens);
 
 //--------------------CMD--------------------//
 void			ft_cd(t_minishell *minishell, t_tokens *tokens);
@@ -137,6 +139,7 @@ void			ft_unset(t_minishell *minishell, t_tokens *tokens);
 int				ft_validator(t_tokens *tokens);
 
 //-------------------UTILS-------------------//
+int				ft_random(void);
 int				ft_isalpha(int c);
 int				ft_isalnum(int c);
 int				ft_onlyspace(char *str);
@@ -155,6 +158,7 @@ char 			*ft_strstr(const char *haystack, const char *needle);
 char			*get_env_value(char *name, t_env *envlst);
 int				ft_atoi(const char *str);
 char			*ft_strjoin_path(char const *s1, char const *s2);
+char			*ft_itoa(int n);
 void    		free_tab(char **tab);
 	//lst
 t_env			*ft_lstlast(t_env	*lst);

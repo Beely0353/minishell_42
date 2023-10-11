@@ -84,13 +84,14 @@ void    ft_expander(t_tokens *tokens, t_env *env)
 {
     int i;
 
-    i = -1;
-    while (tokens[++i].str)
+    i = 0;
+    while (tokens[i].str)
     {
         if (tokens[i].str && tokens[i].dquote)
         {
             while (ft_strchr(tokens[i].str, '$'))
                 tokens[i].str = expander(tokens[i], env);
 		}
+		i++;
     }
 }
