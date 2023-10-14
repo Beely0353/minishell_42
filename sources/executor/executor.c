@@ -31,6 +31,8 @@ int	builtin(t_minishell *g_minishell, t_tokens *tokens)
 		ft_env(g_minishell->envlst, g_minishell);
 	else if(ft_strcmp(tokens->str,"exit") == 0)
 		ft_exit(g_minishell);
+	else if(ft_strcmp(tokens->str,"clear") == 0)
+		ft_clear(g_minishell);
 	/*if (ret == 0)
 		return(EXIT_SUCCESS);*/
 	return(EXIT_SUCCESS);

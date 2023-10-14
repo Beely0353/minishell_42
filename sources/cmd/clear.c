@@ -15,5 +15,6 @@
 void	ft_clear(t_minishell *g_minishell)
 {
 	g_minishell->re = 0;
-	printf("\033[2J\033[1;1H");
+	printf("clear\n");
+	printf("\e[1;1H\e[2J");
 }

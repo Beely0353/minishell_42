@@ -18,34 +18,29 @@ int	is_identifier_exp(char *str)
 
 	i = -1;
 	if (ft_isalpha(str[0]) == 0 && str[0] != '_')
-		return (printf("minishell: unset: `%s': not a valid identifier\n", str));
+		return (printf("minishell: 1: Syntax error: \"%s\" unexpected\n", str));
 	while (str[++i])
 	{
 		if (ft_isalnum(str[i]) == 0 && str[i] != '_' && str[i] != '=')
-			return (printf("minishell: unset: `%s': not a valid identifier\n", str));
+			return (printf("minishell: 1: Syntax error: \"%s\" unexpected\n", str));
 	}
 	return (0);
 }
 
 void	ft_export(t_minishell *minishell, t_tokens *tokens)
 {
-	int	i;
-
-	i = 0;
 	minishell->re = 0;
-	while (tokens[++i].str)
+	if (tokens[1].str == NULL)
+		return ;
+	if (ft_strchr(tokens[1].str, '='))
 	{
-		if (is_identifier_exp(tokens[i].str))
+		if (is_identifier_exp(tokens[1].str))
 		{
-			minishell->re = 1;
-			return ;
+				minishell->re = 1;
+				return ;
 		}
-	}
-	i = 0;
-	while (tokens[++i].str)
-	{
-		if (ft_strchr(tokens[i].str, '='))
-					ft_lstadd_back(minishell->envlst, ft_lstnew(get_name(tokens[i].str), get_value(tokens[i].str)));
+		ft_lstadd_back(minishell->envlst, ft_lstnew(get_name(tokens[1].str), get_value(tokens[1].str)));
+		printf("export %s\n", tokens[1].str);
 	}
 	return ;
 }

@@ -35,7 +35,8 @@ char *remplace_expand(char *str, char *name, char *value)
 
 	remplace_expand_short(str, name, &k, &i, &j);
 	n = i;
-	new = malloc(sizeof(char) * (k + ft_strlen(value) + ft_strlen(str + i)) + 10);
+	k = ft_strlen(str) + ft_strlen(value) - ft_strlen(name);
+	new = malloc(sizeof(char) * (k));
 	j = 0;
 	i = 0;
 	while (str[i] != '$')
@@ -45,6 +46,7 @@ char *remplace_expand(char *str, char *name, char *value)
 		new[j++] = value[k++];
 	while(str[n])
 		new[j++] = str[n++];
+	new[j] = '\0';
 	return (new);
 }
 
@@ -69,9 +71,19 @@ int	find_expand(char *str, char *name)
 	}
 	return (1);
 }
-char    *expander(t_tokens tokens, t_env *env)
+char    *expander(t_tokens tokens, t_env *env, t_minishell *mini)
 {
-    while (env)
+	char *re;
+	char *str;
+
+	if (find_expand(tokens.str, "?"))
+	{
+		re = ft_itoa(mini->re);
+		str = remplace_expand(tokens.str, "?", re);
+		free(re);
+		return (str);
+	}
+	while (env)
 	{
 		if (find_expand(tokens.str, env->name))
 			return (remplace_expand(tokens.str, env->name,env->value));
@@ -80,7 +92,7 @@ char    *expander(t_tokens tokens, t_env *env)
 	return (no_expand(tokens.str));
 }
 
-void    ft_expander(t_tokens *tokens, t_env *env)
+void    ft_expander(t_tokens *tokens, t_env *env, t_minishell *mini)
 {
     int i;
 
@@ -90,7 +102,7 @@ void    ft_expander(t_tokens *tokens, t_env *env)
         if (tokens[i].str && tokens[i].dquote)
         {
             while (ft_strchr(tokens[i].str, '$'))
-                tokens[i].str = expander(tokens[i], env);
+                tokens[i].str = expander(tokens[i], env, mini);
 		}
 		i++;
     }

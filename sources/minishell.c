@@ -97,31 +97,32 @@ void	shell(t_minishell *g_minishell)
 		g_minishell->tokens = ft_lexer(str);//a revoir retirez quote
 		//print_env(g_minishell->envlst);
 		//print_token(g_minishell->tokens);
-		//ft_expander(g_minishell->tokens, g_minishell->envlst);// var $?
+		ft_expander(g_minishell->tokens, g_minishell->envlst, g_minishell);// var $?
 		//printf("\n\n");
 		//print_token(g_minishell->tokens);
 		parse_tokens(g_minishell->tokens, g_minishell);//gerer $?
 		//print_parse(g_minishell->tokens);
-		//find_cmd(g_minishell, 0);
 		ft_validator(g_minishell->tokens);
+		find_cmd(g_minishell, 0);
 		//printf("re = %s\n", ft_heredoc(g_minishell, g_minishell->tokens));
-		ft_executor(g_minishell, g_minishell->tokens);
+		//ft_executor(g_minishell, g_minishell->tokens);
 		free_tokens(g_minishell->tokens);
 	}
 }
 
 int	main(int ac, char **av, char **envp)
 {
-	t_env		envlst;
+	t_env		*envlst;
 	t_minishell	g_minishell;
 
 	(void) ac;
 	(void) av;
-	envlst.name = NULL;
-	envlst.value = NULL;
-	envlst.next = NULL;
-	get_envlst(envp, &envlst);
-	init_minishell(&g_minishell, envlst.next);
+	envlst = malloc(sizeof(t_env));
+	envlst->name = get_name(envp[0]);
+	envlst->value = get_value(envp[0]);
+	envlst->next = NULL;
+	get_envlst(envp, envlst);
+	init_minishell(&g_minishell, envlst);
 	shell(&g_minishell);
 	free_tab(g_minishell.PATH);
 	return (0);

@@ -35,8 +35,9 @@ char	*get_value(char	*envp)
 	int		j;
 
 	i = 0;
-	while (envp[i - 1] != '=')
+	while (envp[i] != '=')
 		i++;
+	i++;
 	j = i;
 	while (envp[i])
 		i++;
@@ -52,7 +53,7 @@ void	get_envlst(char **envp, t_env *envlst)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (envp[++i])
 		ft_lstadd_back(envlst, \
 		ft_lstnew(get_name(envp[i]), get_value(envp[i])));

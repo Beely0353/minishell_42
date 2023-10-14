@@ -46,13 +46,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char	*ft_strdup(const char *s1)
 {
 	char	*dst;
-	size_t	len;
+	int		i;
 
-	len = ft_strlen(s1) + 1;
-	dst = malloc(len * sizeof(char));
+	i = -1;
+	dst = malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!dst)
 		return (0);
-	ft_memcpy(dst, s1, len);
+	while (s1[++i])
+		dst[i] = s1[i];
+	dst[i] = '\0';
 	return (dst);
 }
 

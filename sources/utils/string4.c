@@ -12,16 +12,21 @@
 
 #include "minishell.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
 	{
-		if (*s == (const char)c)
-			return ((char *) s);
-		s++;
+		if (s[i] == c)
+			return (s + i);
+		i++;
 	}
-	if (*s == (char)c)
-		return ((char *)s);
+	if (s[i] == c)
+		return (s + i);
 	return (NULL);
 }
 

@@ -14,10 +14,10 @@
 
 char	*r_quote(char *str)
 {
-	int	i;
-	int j;
+	int		i;
+	int		j;
 	char	*new;
-	
+
 	i = 1;
 	j = 0;
 	new = malloc(sizeof(char) * (ft_strlen(str) - 1));
@@ -30,19 +30,20 @@ char	*r_quote(char *str)
 
 t_tokens	*remove_quotes(t_tokens *tokens)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 	t_tokens	*new;
-	
+
 	i = -1;
 	j = 0;
 	while (tokens[j].str != NULL)
-			j++;
+		j++;
 	new = malloc(sizeof(t_tokens) * (j + 1));
 	j = 0;
 	while (tokens[++i].str)
 	{
 		new[j].path_cmd = NULL;
+		new[j].dquote = 1;
 		if (tokens[i].str[0] == '\'' || tokens[i].str[0] == '"')
 			new[j++].str = r_quote(tokens[i].str);
 		else

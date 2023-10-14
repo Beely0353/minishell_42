@@ -23,7 +23,8 @@ int	count_token(t_tokens *tokens)
 	{
 		if (tokens[i].str == NULL)
 			break ;
-		if (tokens[i].spcecho == 1 && tokens[i + 1].str && tokens[i + 1].spcecho == 0)
+		if (tokens[i].spcecho == 1 && tokens[i + 1].str \
+		&& tokens[i + 1].spcecho == 0)
 		{
 			i++;
 			j++;
@@ -40,10 +41,10 @@ int	count_token(t_tokens *tokens)
 
 char	*quotejoin(t_tokens *token, int k, int i)
 {
-	int	tmp;
-	int	j;
+	int		tmp;
+	int		j;
 	char	*str;
-	
+
 	tmp = k;
 	j = 0;
 	while (tmp != i)
@@ -52,13 +53,12 @@ char	*quotejoin(t_tokens *token, int k, int i)
 	return (str);
 }
 
-
 char	*join_tokens(t_tokens *tokens, int *k)
 {
-	int	j;
-	int	i;
+	int		j;
+	int		i;
 	char	*str;
-	
+
 	j = *k;
 	i = *k;
 	i++;
@@ -73,18 +73,19 @@ char	*join_tokens(t_tokens *tokens, int *k)
 
 t_tokens	*join_quotes(t_tokens *tokens)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 	t_tokens	*new;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	new = malloc(sizeof(t_tokens) * (count_token(tokens) + 1));
-	while (tokens[i].str != NULL)
+	while (tokens[++i].str != NULL)
 	{
 		if (tokens[i].spcecho == 3)
 			new[j++].str = tokens[i].str;
-		else if (tokens[i].spcecho == 1 && tokens[i + 1].str && tokens[i + 1].spcecho == 0)
+		else if (tokens[i].spcecho == 1 && tokens[i + 1].str \
+		&& tokens[i + 1].spcecho == 0)
 		{
 			new[j++].str = join_tokens(tokens, &i);
 			continue ;
@@ -93,7 +94,6 @@ t_tokens	*join_quotes(t_tokens *tokens)
 			new[j++] = tokens[i];
 		if (tokens[i].str == NULL)
 			break ;
-		i++;
 	}
 	new[j].str = NULL;
 	free(tokens);

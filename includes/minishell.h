@@ -118,11 +118,10 @@ int				find_cmd(t_minishell *g_minishell, int cmd);
 char			*get_value(char	*envp);
 char			*get_name(char	*envp);
 
-char   			*no_expand(char *str);
-void    		ft_expander(t_tokens *tokens, t_env *env);
-
 //--------------------TOOLS--------------------//
-char			*expander(t_tokens tokens, t_env *env);
+char			*expander(t_tokens tokens, t_env *env, t_minishell *mini);
+char   			*no_expand(char *str);
+void    		ft_expander(t_tokens *tokens, t_env *env, t_minishell *mini);
 int				ft_executor(t_minishell *g_minishell,t_tokens *tokens);
 char			*ft_heredoc(t_minishell *mini, t_tokens *tokens);
 
@@ -152,7 +151,7 @@ char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strcmp(const char *s1, const char *s2);
-char			*ft_strchr(const char *s, int c);
+char			*ft_strchr(char *s, int c);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_strncpy(char *dest, const char *src, size_t n);
 char 			*ft_strstr(const char *haystack, const char *needle);

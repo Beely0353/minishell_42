@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	ft_doc(char	*delim, int fd, t_env *envlst, t_tokens	*line)
+void	ft_doc(char	*delim, int fd, t_env *envlst, t_tokens	*line, t_minishell *mini)
 {
 	while (1)
 	{
@@ -9,7 +9,7 @@ void	ft_doc(char	*delim, int fd, t_env *envlst, t_tokens	*line)
 		if (!line->str)
 			break ;
 		line->dquote = 1;
-		ft_expander(line, envlst);
+		ft_expander(line, envlst, mini);
 		if (ft_strcmp(line->str, delim) == 0)
 		{
 			free(line->str);
@@ -41,7 +41,7 @@ char	*ft_heredoc(t_minishell *mini, t_tokens *delim)
 	}
 	line = malloc(sizeof(t_tokens) * 2);
 	line[1].str = NULL;
-	ft_doc(delim->str, fd, mini->envlst, line);
+	ft_doc(delim->str, fd, mini->envlst, line, mini);
 	close(fd);
 	free(line);
 	return (here);
